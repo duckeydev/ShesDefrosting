@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Days Until Christmas</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #f7f7f7;
+    }
+    .container {
+      text-align: center;
+    }
+    h1 {
+      font-size: 48px;
+      color: #2c3e50;
+    }
+    .image-container {
+      margin: 20px 0;
+    }
+    .image-container img {
+      width: 200px;
+      height: auto;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1 id="countdown">Loading...</h1>
+    <div class="image-container">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQarW-3-qF6LneJMjTZss-FMZsrvUuIZ6Q2Xw&s" alt="Christmas Image">
+    </div>
+  </div>
+
+  <script>
+    function calculateDaysUntilChristmas() {
+      const today = new Date();
+      const year = today.getFullYear();
+      const christmas = new Date(year, 11, 25); // December 25th of the current year
+
+      // If today's date is after Christmas, calculate for next year
+      if (today > christmas) {
+        christmas.setFullYear(year + 1);
+      }
+
+      const oneDay = 24 * 60 * 60 * 1000; // Hours * Minutes * Seconds * Milliseconds
+      const daysLeft = Math.round((christmas - today) / oneDay);
+
+      return daysLeft;
+    }
+
+    function updateCountdown() {
+      const daysUntilChristmas = calculateDaysUntilChristmas();
+      document.getElementById('countdown').textContent = `🎄 ${daysUntilChristmas} days until Christmas! 🎅 The Defrosting Has Begun`;
+    }
+
+    // Update countdown on page load
+    updateCountdown();
+  </script>
+</body>
+</html>
